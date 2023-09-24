@@ -21,33 +21,46 @@
     </style>
 </head>
 <body>
-    <div class="contents" hidden>
-        <button id="incrementButton">Tekan Aku :)</button>
-        <h3>Kamu sudah menekan tombol diatas sebanyak<span id="count">0</span></h3>
+    <div class="button" align="center">
+        <h3 id="caption">Silahkan tekan salah satu tombol di bawah..</h3>
+        <button class="button" id="tombol">Tombol Custom Event</button>   
     </div>
     <!-- Script menhilangkan hidden pada div -->
     <script>
-        function increment() {
-            document.getElementById('count').innerText++;
+        // function increment() {
+        //     document.getElementById('count').innerText++;
 
-            if (document.getElementById('count').innerText == 7) {
-                const hiddenMessage = document.createElement('h4');
-                hiddenMessage.innerText = 'Selamat! Anda menemukan hadiah tersembunyi...';
-                const image = document.createElement('img');
-                image.setAttribute('src', 'https://i.ibb.co/0V49VRZ/catto.jpg');
-                const contents = document.querySelector('.contents');
-                contents.appendChild(hiddenMessage).appendChild(image);
-            }
-        }
-        function welcome() {
-            alert('Sim salabim muncul elmen-elmen HTML!');
-            const contents = document.querySelector('.contents');
-            contents.removeAttribute('hidden');
-        }
-        // document.getElementById('incrementButton').onclick =increment;
-        // document.body.onload = welcome;  
-        window.addEventListener('load', welcome);
-        document.getElementById('incrementButton').addEventListener('click', increment);
+        //     if (document.getElementById('count').innerText == 7) {
+        //         const hiddenMessage = document.createElement('h4');
+        //         hiddenMessage.innerText = 'Selamat! Anda menemukan hadiah tersembunyi...';
+        //         const image = document.createElement('img');
+        //         image.setAttribute('src', 'https://i.ibb.co/0V49VRZ/catto.jpg');
+        //         const contents = document.querySelector('.contents');
+        //         contents.appendChild(hiddenMessage).appendChild(image);
+        //     }
+        // }
+        // function welcome() {
+        //     alert('Sim salabim muncul elmen-elmen HTML!');
+        //     const contents = document.querySelector('.contents');
+        //     contents.removeAttribute('hidden');
+        // }
+        // // document.getElementById('incrementButton').onclick =increment;
+        // // document.body.onload = welcome;  
+        // window.addEventListener('load', welcome);
+        // document.getElementById('incrementButton').addEventListener('click', increment);
+    const changeCaption = new Event('changeCaption');
+    
+    window.addEventListener('load', function() {
+        const tombol = document.getElementById('tombol');
+        tombol.addEventListener('changeCaption', customEventHandler);
+        tombol.addEventListener('click', function() {});
+    });
+
+    function customEventHandler(ev) {
+        console.log('Event' + ev.type + 'telah dijalankan');
+        const caption = document.getElementById('caption');
+        caption.innerText = 'Anda telah membangkitkan custom event';
+    }
     </script>
 </body>
 </html>
