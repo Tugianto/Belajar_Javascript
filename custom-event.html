@@ -28,17 +28,17 @@
 
     <script>
         const changeCaption = new Event('changeCaption');
-    
+        tombol.addEventListener('changeCaption', CustomEventHandler);
         window.addEventListener('load', function () {
             const tombol = document.getElementById('tombol');
 
-            tombol.addEventListener('changeCaption', CustomEventHandler);
+            function  customEventHandler(ev) {
             tombol.addEventListener('click', function (){
                 tombol.dispatchEvent(changeCaption);
             });
         });
 
-        function  customEventHandler(ev) {
+       
             console.log('Event' + ev.type + 'telah dijalankan');
             const caption = document.getElementById('caption');
             caption.innerText = 'Anda telah menggantikan custom event';
